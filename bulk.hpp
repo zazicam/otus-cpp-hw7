@@ -10,6 +10,7 @@ public:
 	virtual void handle(Observable& subject) = 0;
 	virtual ~Observer() {}
 };
+//------------------------------------------------------------
 
 class Observable {
 public:
@@ -17,6 +18,7 @@ public:
 	virtual void add(Observer *obs) = 0;
 	virtual ~Observable() {}
 };
+//------------------------------------------------------------
 
 class Bulk: public Observable {
 	std::list<Observer*> observers;	
@@ -36,6 +38,7 @@ public:
 	void clear();
 	~Bulk();
 };
+//------------------------------------------------------------
 
 class Command: public Observer {
 	std::string name;
