@@ -22,7 +22,7 @@ public:
 	bool is_last(const Command * obs);
 
 	void process(); 
-	int count() const; 
+	size_t count() const; 
 
 	void clear();
 	~Bulk();

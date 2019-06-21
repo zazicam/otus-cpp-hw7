@@ -6,7 +6,7 @@
 
 // Class Command
 
-Command::Command(std::string name) : name(name) {}
+Command::Command(std::string& name) : name(name) {}
 
 void Command::handle(Bulk& subject)  {
 	Bulk& bulk = subject;

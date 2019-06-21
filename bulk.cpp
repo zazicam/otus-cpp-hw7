@@ -60,7 +60,7 @@ void Bulk::process() {
 	clear(); // clear processed observers
 }
 
-int Bulk::count() const {
+size_t Bulk::count() const {
 	return observers.size();
 }
 
