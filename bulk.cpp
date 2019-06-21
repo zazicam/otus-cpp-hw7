@@ -10,6 +10,8 @@
 
 // Class Bulk
 
+#include "command.hpp"
+
 Bulk::Bulk() {
 }
 
@@ -19,7 +21,7 @@ void Bulk::notify()  {
 	}
 }
 
-void Bulk::add(std::shared_ptr<Observer> obs)  {
+void Bulk::add(smart_ptr obs)  {
 	// get time of first command in bulk
 	using namespace std::chrono;
 	if(count()==0) {
@@ -35,9 +37,9 @@ std::stringstream& Bulk::get_output() {
 	return output;
 }
 
-bool Bulk::is_last(const std::shared_ptr<Observer> obs) {
+bool Bulk::is_last(const Command* obs) {
 	auto last_iter = --observers.end();	
-	return (obs == *last_iter);
+	return (obs == last_iter->get());
 }
 
 void Bulk::process() {
@@ -58,7 +60,7 @@ void Bulk::process() {
 	clear(); // clear processed observers
 }
 
-int Bulk::count() {
+int Bulk::count() const {
 	return observers.size();
 }
 

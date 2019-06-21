@@ -27,8 +27,7 @@ int main(int argc, char **argv) {
 				bulk.process();
 		}
 		else {
-			std::shared_ptr<Observer> pcommand(new Command(line));
-			bulk.add(pcommand);
+			bulk.add(std::make_shared<Command>(line));
 			if(level==0 && bulk.count()==N)
 				bulk.process();
 		}

@@ -8,10 +8,9 @@
 
 Command::Command(std::string name) : name(name) {}
 
-void Command::handle(Observable& subject)  {
-	Bulk& bulk = dynamic_cast<Bulk&>(subject);
-	std::shared_ptr<Observer> pcurrent(this);
-	std::string separator = (bulk.is_last(pcurrent))? "\n" : ", ";
+void Command::handle(Bulk& subject)  {
+	Bulk& bulk = subject;
+	const std::string separator = (bulk.is_last(this))? "\n" : ", ";
 	bulk.get_output() << name << separator;
 }
 

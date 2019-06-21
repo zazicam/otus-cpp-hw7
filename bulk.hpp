@@ -4,23 +4,25 @@
 #include <sstream>
 #include <memory>
 
-#include "observable.hpp"
+class Command;
 
-class Bulk: public Observable {
-	std::list<std::shared_ptr<Observer>> observers;	
+using smart_ptr = std::shared_ptr<Command>;
+
+class Bulk {
+	std::list<smart_ptr> observers;	
 	std::stringstream output;
 	int time;
 
 public:
 	Bulk();
-	void notify() override; 
-	void add(std::shared_ptr<Observer> obs) override;
+	void notify(); 
+	void add(smart_ptr obs);
 
 	std::stringstream& get_output();
-	bool is_last(const std::shared_ptr<Observer> obs);
+	bool is_last(const Command * obs);
 
 	void process(); 
-	int count(); 
+	int count() const; 
 
 	void clear();
 	~Bulk();
