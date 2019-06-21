@@ -21,7 +21,7 @@ void Bulk::notify()  {
 	}
 }
 
-void Bulk::add(smart_ptr obs)  {
+void Bulk::add(std::shared_ptr<Command> obs)  {
 	// get time of first command in bulk
 	using namespace std::chrono;
 	if(count()==0) {
