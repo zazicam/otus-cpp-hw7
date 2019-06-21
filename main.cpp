@@ -1,4 +1,5 @@
 #include "bulk.hpp"
+#include "command.hpp"
 
 #include <iostream>
 
