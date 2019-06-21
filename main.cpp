@@ -2,6 +2,7 @@
 #include "command.hpp"
 
 #include <iostream>
+#include <memory>
 
 int main(int argc, char **argv) {
 	int N = 3;
@@ -26,7 +27,8 @@ int main(int argc, char **argv) {
 				bulk.process();
 		}
 		else {
-			bulk.add(new Command(line));
+			std::shared_ptr<Observer> pcommand(new Command(line));
+			bulk.add(pcommand);
 			if(level==0 && bulk.count()==N)
 				bulk.process();
 		}

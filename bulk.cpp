@@ -6,8 +6,12 @@
 #include <string>
 #include <list>
 #include <chrono>
+#include <memory>
 
 // Class Bulk
+
+Bulk::Bulk() {
+}
 
 void Bulk::notify()  {
 	for(auto obs : observers) {
@@ -15,7 +19,7 @@ void Bulk::notify()  {
 	}
 }
 
-void Bulk::add(Observer *obs)  {
+void Bulk::add(std::shared_ptr<Observer> obs)  {
 	// get time of first command in bulk
 	using namespace std::chrono;
 	if(count()==0) {
@@ -31,7 +35,7 @@ std::stringstream& Bulk::get_output() {
 	return output;
 }
 
-bool Bulk::is_last(const Observer* obs) {
+bool Bulk::is_last(const std::shared_ptr<Observer> obs) {
 	auto last_iter = --observers.end();	
 	return (obs == *last_iter);
 }
@@ -59,8 +63,6 @@ int Bulk::count() {
 }
 
 void Bulk::clear() {
-	for(auto obs : observers)
-		delete obs;
 	observers.clear();
 }
 
